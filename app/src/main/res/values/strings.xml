@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NetShoes</string>
+    <string name="detalhe_produto">Detalhe do produto</string>
+    <string name="rs">R$</string>
+    <string name="erro_servico">Ocorreu um erro ao tentar comunicar com o serviço!!!</string>
+    <string name="tente_novamente">Click aqui para tentar novamente!!!</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="action_settings">Settings</string>
+</resources>
