@@ -1,20 +1,33 @@
 package br.com.netshoes.models;
 
-import br.com.netshoes.utils.DetalheTipo;
-
 /**
  * Created by Caramelo on 18/12/2015.
  */
 public class Detalhe {
-    private DetalheTipo tipo;
+
+    public enum Tipo {
+        Imagem(0), NomeProduto(1), Titulo(2), Descricao(3);
+
+        int id;
+
+        Tipo(int id) {
+            this.id = id;
+        }
+
+        public int getId() {
+            return id;
+        }
+    }
+
+    private Tipo tipo;
     private Object object;
 
-    public Detalhe(DetalheTipo tipo, Object object) {
+    public Detalhe(Tipo tipo, Object object) {
         this.tipo = tipo;
         this.object = object;
     }
 
-    public DetalheTipo getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 

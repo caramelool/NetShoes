@@ -41,6 +41,7 @@ public class ActivityMain extends AppCompatActivity
     private Retorno mRetorno;
     private ArrayList<Produto> mArrProdutos;
     private AdapterProduto mAdapterProduto;
+    private EndlessScroll mEndlessScroll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +75,8 @@ public class ActivityMain extends AppCompatActivity
         mAdapterProduto = new AdapterProduto(this, mArrProdutos);
         gridProdutos.setAdapter(mAdapterProduto);
 
-        gridProdutos.setOnScrollListener(new EndlessScroll(this));
+        mEndlessScroll = new EndlessScroll(this);
+        gridProdutos.setOnScrollListener(mEndlessScroll);
         gridProdutos.setOnItemClickListener(this);
         viewEmpty.setOnClickListener(this);
     }
@@ -87,7 +89,7 @@ public class ActivityMain extends AppCompatActivity
         viewEmpty.setVisibility(View.GONE);
         progress.setVisibility(View.VISIBLE);
 
-        //Executa task que comunica a API e dispara, caso não aconteça nenhum erro,
+        //Executa task que comunica com a API e dispara, caso não aconteça nenhum erro,
         //o metodo onTaskDone
         new TaskProdutos(this, Urls.DEPARTAMENTO_PRINCIPAL).execute();
     }
@@ -133,6 +135,9 @@ public class ActivityMain extends AppCompatActivity
         //Limpa Lista
         mArrProdutos.clear();
         mAdapterProduto.notifyDataSetChanged();
+
+        //Reseta o infit scroll+
+        mEndlessScroll.reset();
 
         viewEmpty.setVisibility(View.VISIBLE);
         progress.setVisibility(View.GONE);

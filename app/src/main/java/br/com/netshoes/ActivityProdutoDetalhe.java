@@ -26,7 +26,6 @@ import br.com.netshoes.models.Caracteristica;
 import br.com.netshoes.models.Detalhe;
 import br.com.netshoes.models.Produto;
 import br.com.netshoes.tasks.TaskProdutoDetalhe;
-import br.com.netshoes.utils.DetalheTipo;
 import br.com.netshoes.utils.Urls;
 
 /**
@@ -132,20 +131,20 @@ public class ActivityProdutoDetalhe extends AppCompatActivity
         mArrDetalhes.clear();
 
         //Adiciona imagem
-        mArrDetalhes.add(new Detalhe(DetalheTipo.Imagem, mProduto.getImagem()));
+        mArrDetalhes.add(new Detalhe(Detalhe.Tipo.Imagem, mProduto.getImagem()));
 
         //Adiciona nome
-        mArrDetalhes.add(new Detalhe(DetalheTipo.NomeProduto, produtoAtualizado.getNome()));
+        mArrDetalhes.add(new Detalhe(Detalhe.Tipo.NomeProduto, produtoAtualizado.getNome()));
 
         //Adiciona descrição
-        mArrDetalhes.add(new Detalhe(DetalheTipo.Titulo, "Descrição"));
-        mArrDetalhes.add(new Detalhe(DetalheTipo.Descricao, produtoAtualizado.getDescricao()));
+        mArrDetalhes.add(new Detalhe(Detalhe.Tipo.Titulo, "Descrição"));
+        mArrDetalhes.add(new Detalhe(Detalhe.Tipo.Descricao, produtoAtualizado.getDescricao()));
 
         //Le caracteristicas
         for (Caracteristica caracteristica : produtoAtualizado.getCaracteristicas()) {
             //Adiciona todas as caracteristicas
-            mArrDetalhes.add(new Detalhe(DetalheTipo.Titulo, caracteristica.getNome()));
-            mArrDetalhes.add(new Detalhe(DetalheTipo.Descricao, caracteristica.getValor()));
+            mArrDetalhes.add(new Detalhe(Detalhe.Tipo.Titulo, caracteristica.getNome()));
+            mArrDetalhes.add(new Detalhe(Detalhe.Tipo.Descricao, caracteristica.getValor()));
         }
 
         //Atualiza lista

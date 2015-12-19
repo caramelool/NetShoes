@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import br.com.netshoes.R;
 import br.com.netshoes.models.Detalhe;
 import br.com.netshoes.models.Imagem;
-import br.com.netshoes.utils.DetalheTipo;
 
 /**
  * Created by Caramelo on 18/12/2015.
@@ -34,15 +33,15 @@ public class AdapterProdutoDetalhe extends RecyclerView.Adapter<RecyclerView.Vie
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView;
 
-        if (viewType == DetalheTipo.Imagem.getId()) {
+        if (viewType == Detalhe.Tipo.Imagem.getId()) {
             itemView = View.inflate(mContext, R.layout.lst_detalhe_imagem, null);
             return new ViewHolderImagem(itemView);
         }
-        else if (viewType == DetalheTipo.NomeProduto.getId()) {
+        else if (viewType == Detalhe.Tipo.NomeProduto.getId()) {
             itemView = View.inflate(mContext, R.layout.lst_detalhe_nome, null);
             return new ViewHolderNomeProduto(itemView);
         }
-        else if (viewType == DetalheTipo.Titulo.getId()) {
+        else if (viewType == Detalhe.Tipo.Titulo.getId()) {
             itemView = View.inflate(mContext, R.layout.lst_detalhe_titulo, null);
             return new ViewHolderTitulo(itemView);
         }
