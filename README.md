@@ -6,7 +6,7 @@ Utilizei alguns recursos graficos para deixar o layout agradavel (CardView, AppB
 
 Utilizei OkHTTP para realizar as requisições dos serviços (Lista de produtos e Detalhe do produto)
 
-Realizei um teste unitario. Não tinha muita pratica, na verdade nunca tinha realizado um, mas fiz sem muita dificuldade.
+Realizei um teste unitário. Não tinha muita prática, na verdade nunca tinha realizado um, mas fiz sem muita dificuldade.
 
 Enfim...
 
