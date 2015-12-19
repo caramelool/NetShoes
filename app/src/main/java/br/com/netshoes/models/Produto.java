@@ -39,6 +39,10 @@ public class Produto {
         return imagem;
     }
 
+    public void setImagem(Imagem imagem) {
+        this.imagem = imagem;
+    }
+
     public Preco getPreco() {
         return preco;
     }

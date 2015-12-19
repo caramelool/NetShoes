@@ -151,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/laranja"
                     android:textStyle="bold"
-                    android:textSize="20sp"/>
+                    android:textSize="22sp"/>
 
             </LinearLayout>
 

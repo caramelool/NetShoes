@@ -91,6 +91,29 @@ public class ActivityProdutoDetalhe extends AppCompatActivity
         mAdapterProdutoDetalhe = new AdapterProdutoDetalhe(this, mArrDetalhes);
         rclDetalhe.setAdapter(mAdapterProdutoDetalhe);
 
+        viewEmpty.setOnClickListener(this);
+        fabCarrinho.setOnClickListener(this);
+
+        //Preenche dados referente ao preço do produto
+        this.preencheDadosPreco();
+    }
+
+    /**
+     * Atualiza informações do produto
+     */
+    private void atualizaDados() {
+
+        progress.setVisibility(View.VISIBLE);
+        viewEmpty.setVisibility(View.GONE);
+
+        new TaskProdutoDetalhe(this, Urls.NETSHOES+mProduto.getUrl())
+                .execute();
+    }
+
+    /**
+     * Preenche dados refente ao preço do produto
+     */
+    private void preencheDadosPreco() {
         //Verifica se possui desconto
         if (mProduto.getDesconto() != null) {
             txtDesconto.setVisibility(View.VISIBLE);
@@ -106,21 +129,6 @@ public class ActivityProdutoDetalhe extends AppCompatActivity
         //Seta strikethrough
         txtPrecoOriginal.setPaintFlags(txtPrecoOriginal.getPaintFlags()
                 | Paint.STRIKE_THRU_TEXT_FLAG);
-
-        viewEmpty.setOnClickListener(this);
-        fabCarrinho.setOnClickListener(this);
-    }
-
-    /**
-     * Atualiza informações do produto
-     */
-    private void atualizaDados() {
-
-        progress.setVisibility(View.VISIBLE);
-        viewEmpty.setVisibility(View.GONE);
-
-        new TaskProdutoDetalhe(this, Urls.NETSHOES+mProduto.getUrl())
-                .execute();
     }
 
     @Override
@@ -128,10 +136,14 @@ public class ActivityProdutoDetalhe extends AppCompatActivity
         progress.setVisibility(View.GONE);
         viewEmpty.setVisibility(View.GONE);
 
+        //O campo imagem não vem preenchido então seto a imagem do produto desatualizado
+        produtoAtualizado.setImagem(mProduto.getImagem());
+        mProduto = produtoAtualizado;
+
         mArrDetalhes.clear();
 
         //Adiciona imagem
-        mArrDetalhes.add(new Detalhe(Detalhe.Tipo.Imagem, mProduto.getImagem()));
+        mArrDetalhes.add(new Detalhe(Detalhe.Tipo.Imagem, produtoAtualizado.getImagem()));
 
         //Adiciona nome
         mArrDetalhes.add(new Detalhe(Detalhe.Tipo.NomeProduto, produtoAtualizado.getNome()));
@@ -146,6 +158,9 @@ public class ActivityProdutoDetalhe extends AppCompatActivity
             mArrDetalhes.add(new Detalhe(Detalhe.Tipo.Titulo, caracteristica.getNome()));
             mArrDetalhes.add(new Detalhe(Detalhe.Tipo.Descricao, caracteristica.getValor()));
         }
+
+        //Atualiza dados referente ao preço
+        this.preencheDadosPreco();
 
         //Atualiza lista
         mAdapterProdutoDetalhe.notifyDataSetChanged();
