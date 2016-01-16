@@ -19,13 +19,13 @@
             android:background="@android:color/white">
 
             <ImageView
-                android:id="@+id/imgFoto"
+                android:id="@+id/ivImage"
                 android:layout_width="match_parent"
                 android:layout_height="168dp"
                 android:scaleType="fitCenter"/>
 
             <TextView
-                android:id="@+id/txtDesconto"
+                android:id="@+id/tvBadge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|end"
@@ -44,7 +44,7 @@
             android:padding="5dp">
 
             <TextView
-                android:id="@+id/txtNome"
+                android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -53,7 +53,7 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/txtPrecoOriginal"
+                android:id="@+id/tvOriginalPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -61,7 +61,7 @@
                 android:textStyle="italic" />
 
             <TextView
-                android:id="@+id/txtPrecoAtual"
+                android:id="@+id/tvActualPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"

@@ -1,9 +1,9 @@
-package br.com.netshoes.models;
+package br.com.netshoes.model;
 
 /**
  * Created by Caramelo on 17/12/2015.
  */
-public class Imagem {
+public class Image {
     private String large;
     private String medium;
     private String normal;

@@ -1,16 +1,16 @@
-package br.com.netshoes.models;
+package br.com.netshoes.model;
 
 /**
  * Created by Caramelo on 18/12/2015.
  */
-public class Detalhe {
+public class Detail {
 
-    public enum Tipo {
-        Imagem(0), NomeProduto(1), Titulo(2), Descricao(3);
+    public enum Type {
+        Image(0), ProductName(1), Title(2), Description(3);
 
         int id;
 
-        Tipo(int id) {
+        Type(int id) {
             this.id = id;
         }
 
@@ -19,16 +19,16 @@ public class Detalhe {
         }
     }
 
-    private Tipo tipo;
+    private Type type;
     private Object object;
 
-    public Detalhe(Tipo tipo, Object object) {
-        this.tipo = tipo;
+    public Detail(Type type, Object object) {
+        this.type = type;
         this.object = object;
     }
 
-    public Tipo getTipo() {
-        return tipo;
+    public Type getType() {
+        return type;
     }
 
     public Object getObject() {
