@@ -19,12 +19,9 @@ public class NetShoesService {
 
     public NetShoesService() {
         if (mRetrofit == null) {
-            OkHttpClient client = new OkHttpClient();
-
             mRetrofit = new Retrofit.Builder()
                     .baseUrl("http://www.netshoes.com.br")
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(client)
                     .build();
         }
     }
@@ -46,7 +43,7 @@ public class NetShoesService {
                 "User-Agent: Netshoes App",
                 "X-Requested-With: XMLHttpRequest"
         })
-        @GET("/produto/{product}")
-        Call<ProductDetailResult> productDetail(@Path("product") String product);
+        @GET("/produto/{base_sku}")
+        Call<ProductDetailResult> productDetail(@Path("base_sku") String baseSku);
     }
 }

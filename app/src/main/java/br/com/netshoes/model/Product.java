@@ -3,6 +3,8 @@ package br.com.netshoes.model;
 import android.net.Uri;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -16,7 +18,8 @@ public class Product implements Serializable {
     public static final long  serialVersionUID = 1L;
     private String name;
     private String description;
-    private String url;
+    @SerializedName("base_sku")
+    private String baseSku;
     private Image image;
     private Price price;
     private Badge badge;
@@ -30,15 +33,8 @@ public class Product implements Serializable {
         return description;
     }
 
-    public String getUrl() {
-        //Found the solution but I guess it's not correct
-        //I tried URLDecoder but didn't work
-//        try {
-//            return URLDecoder.decode(url, "UTF-8");
-//        } catch (UnsupportedEncodingException err) {
-//            return "";
-//        }
-        return url.split("/produto/")[1];
+    public String getBaseSku() {
+        return baseSku;
     }
 
     public Image getImage() {

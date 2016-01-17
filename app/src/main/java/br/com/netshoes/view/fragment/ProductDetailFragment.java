@@ -90,9 +90,8 @@ public class ProductDetailFragment extends BaseFragment {
     }
 
     public void getDetail() {
-        String url = mProduct.getUrl();
         NetShoesService.Interface service = new NetShoesService().getService();
-        Call<ProductDetailResult> serviceCall = service.productDetail(url);
+        Call<ProductDetailResult> serviceCall = service.productDetail(mProduct.getBaseSku());
         serviceCall.enqueue(new Callback<ProductDetailResult>() {
             @Override
             public void onResponse(Response<ProductDetailResult> response) {
