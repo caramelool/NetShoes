@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.ArrayList;
@@ -65,34 +66,31 @@ public class ProductListFragment extends BaseFragment
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        mProductListAdapter = new ProductListAdapter(this);
 
-        if (savedInstanceState == null) {
-            mProductListAdapter = new ProductListAdapter(this);
+        rvProducts.setHasFixedSize(true);
+        rvProducts.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
+        rvProducts.setAdapter(mProductListAdapter);
 
-            rvProducts.setHasFixedSize(true);
-            rvProducts.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
-            rvProducts.setAdapter(mProductListAdapter);
-
-            mEndlessRecyclerView = new EndlessRecyclerView() {
-                @Override
-                public void onLoad(int page) {
-                    String url = "departamento" + mProductsResult.getValue().getUrl();
-                    if (!url.isEmpty()) {
-                        showLoadingBottom();
-                        getProducts(url);
-                    }
+        mEndlessRecyclerView = new EndlessRecyclerView() {
+            @Override
+            public void onLoad(int page) {
+                String url = "departamento" + mProductsResult.getValue().getUrl();
+                if (!url.isEmpty()) {
+                    showLoadingBottom();
+                    getProducts(url);
                 }
+            }
 
-                @Override
-                public void reset() {
-                    super.reset();
-                    mProductListAdapter.clearItens();
-                }
-            };
-            rvProducts.addOnScrollListener(mEndlessRecyclerView);
+            @Override
+            public void reset() {
+                super.reset();
+                mProductListAdapter.clearItens();
+            }
+        };
+        rvProducts.addOnScrollListener(mEndlessRecyclerView);
 
-            getProducts();
-        }
+        getProducts();
     }
 
     private Callback<ProductsResult> mCallback = new Callback<ProductsResult>() {
@@ -139,10 +137,11 @@ public class ProductListFragment extends BaseFragment
     @Override
     public void OnItemClick(RecyclerView.Adapter adapter, int position) {
         if (adapter == mProductListAdapter) {
+            Product product = mProductListAdapter.getItem(position);
             ProductDetailFragment fragment = new ProductDetailFragment();
 
             Bundle bundle = new Bundle();
-            bundle.putSerializable(Product.class.getSimpleName(), mProductListAdapter.getItem(position));
+            bundle.putString(Product.class.getSimpleName(), new Gson().toJson(product));
 
             ((BaseActivity)getActivity()).attachFragment(fragment, bundle, R.id.frame_container);
         }

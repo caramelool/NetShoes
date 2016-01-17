@@ -1,21 +1,13 @@
 package br.com.netshoes.model;
 
-import android.net.Uri;
-import android.os.Parcelable;
-
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 
 /**
  * Created by Caramelo on 17/12/2015.
  */
-public class Product implements Serializable {
-    public static final long  serialVersionUID = 1L;
+public class Product {
     private String name;
     private String description;
     @SerializedName("base_sku")

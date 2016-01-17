@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.ArrayList;
@@ -69,7 +70,6 @@ public class ProductDetailFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-
         deserializableProduct();
 
         rvDetail.setHasFixedSize(true);
@@ -84,7 +84,8 @@ public class ProductDetailFragment extends BaseFragment {
     }
 
     public void deserializableProduct() {
-        mProduct = (Product) getArguments().getSerializable(Product.class.getSimpleName());
+        mProduct = new Gson().fromJson(getArguments().getString(Product.class.getSimpleName()),
+                Product.class);
         if (mProduct == null)
             throw new NullPointerException("Product not found!!!");
     }

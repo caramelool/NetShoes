@@ -2,7 +2,6 @@ package br.com.netshoes.network;
 
 import br.com.netshoes.model.ProductDetailResult;
 import br.com.netshoes.model.ProductsResult;
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;

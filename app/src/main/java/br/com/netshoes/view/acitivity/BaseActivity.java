@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 
 import butterknife.ButterKnife;
 
@@ -37,8 +36,10 @@ public abstract class BaseActivity extends AppCompatActivity {
             @Override
             public void onBackStackChanged() {
                 for (Fragment fragment : mFragmentManager.getFragments()) {
-                    if (fragment.isVisible())
-                        fragment.onResume();
+                    if (fragment != null) {
+                        if (fragment.isVisible())
+                            fragment.onResume();
+                    }
                 }
             }
         });
